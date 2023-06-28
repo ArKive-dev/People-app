@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PeopleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
+
+
+
+Route::get('database', [PeopleController::class, 'index']);
+// Route::post("customers", [PeopleController::class, 'store']);
+Route::resource('customers',PeopleController::class,['except'=>['index']]);
+
+
+
