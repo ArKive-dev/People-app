@@ -61,17 +61,29 @@
   <button type="submit" class="btn btn-primary">Add Customer</button>
   @csrf
 </form>
-
+@if($Customers->isNotEmpty())
 <table>
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
+<thead>
+        <tr>
+            <th colspan="5">
+                <div class="table-search">
+                    <form class="d-flex" role="search" method="POST" action="{{ route('customers.search') }}">
+                        @csrf
+                        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
   <tbody>
     @foreach ($Customers as $Customer)
     <tr>
@@ -85,9 +97,10 @@
         <input type="text" name="email" value="{{ $Customer->email }}" disabled>
       </td>
       <td>
-        <button onclick="editCustomer(this)" id="edit">Edit</button>
-
-            <button type="submit" id="save" style="display:none;">Save</button>
+      <button onclick="editCustomer(this)" id="edit">Edit Customer</button>
+      <form action="customers/{{ $Customer->id }}" method="POST" class="pb-5">
+        @csrf @method('PUT')
+        <button type="submit" id="save" style="display:none;">Save Customer</button> <!-- // Hidden button to save -->
         </form>
       </td>
       <td>
@@ -100,6 +113,7 @@
     @endforeach
   </tbody>
 </table>
+@endif
 
 
 <script>

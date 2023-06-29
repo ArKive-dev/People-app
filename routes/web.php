@@ -19,8 +19,8 @@ Route::view('/', 'welcome');
 
 
 Route::get('database', [PeopleController::class, 'index']);
-// Route::post("customers", [PeopleController::class, 'store']);
 Route::resource('customers',PeopleController::class,['except'=>['index']]);
+Route::post('customers', [PeopleController::class, 'search'])->name('customers.search');
 
 
 

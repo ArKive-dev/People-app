@@ -57,13 +57,28 @@ class PeopleController extends Controller
     if($request->has('email')){
         $customer->email = $request->email;
     }
-
+    dd($request);
 
     $customer->save();
     return back();
 
 
     }
+
+    public function search(Request $request)
+{
+    $searchQuery = $request->input('search');
+
+    $customers = Customer::where('name', 'LIKE', '%' . $searchQuery . '%')
+        ->orWhere('lname', 'LIKE', '%' . $searchQuery . '%')
+        ->orWhere('email', 'LIKE', '%' . $searchQuery . '%')
+        ->get();
+
+        return view('database', [
+            'Customers' => $customers,
+        ]);
+}
+
 
 }
 
