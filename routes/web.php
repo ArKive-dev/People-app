@@ -14,13 +14,14 @@ use App\Http\Controllers\PeopleController;
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('home');
 
 
+Route::get('database', [PeopleController::class, 'index'])->name('database');
+Route::resource('people',PeopleController::class);
+Route::post('people/search', [PeopleController::class, 'search'])->name('people.search');
 
-Route::get('database', [PeopleController::class, 'index']);
-Route::resource('customers',PeopleController::class,['except'=>['index']]);
-Route::post('customers', [PeopleController::class, 'search'])->name('customers.search');
+Route::put('/people/{person}', [PeopleController::class, 'update'])->name('people.update');
 
 
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\People;
+use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class PeopleController extends Controller
 {
@@ -11,10 +13,10 @@ class PeopleController extends Controller
     public function index()
     {
 
-    $customers = Customer::all();
+        $people = Person::paginate(3);
 
     return view('database', [
-        'Customers' => $customers,
+        'People' => $people,
     ]);
 
     }
@@ -27,55 +29,48 @@ class PeopleController extends Controller
             'lname' => 'required|min:3'
         ]);
 
-        $customer = new Customer();
-        $customer->name = request('name');
-        $customer->lname = request('lname');
-        $customer->email = request('email');
-        $customer->save();
+        $person = new Person();
+        $person->name = request('name');
+        $person->lname = request('lname');
+        $person->email = request('email');
+        $person->save();
 
         return back();
     }
 
     public function destroy(string $id)
     {
-        $customer = Customer::findOrFail($id);
-        $customer->delete();
+        $person = Person::findOrFail($id);
+        $person->delete();
 
         return back();
     }
 
-    public function update(Request $request,string $id)
+    public function update(Request $request, Person $person)
     {
-    $customer = Customer::findOrFail($id);
+        $data = $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'lname' => 'required|min:3'
+        ]);
 
-    if($request->has('name')){
-        $customer->name = $request->name;
-    }
-    if($request->has('lname')){
-        $customer->lname = $request->lname;
-    }
-    if($request->has('email')){
-        $customer->email = $request->email;
-    }
-    dd($request);
+        $person->update($data);
 
-    $customer->save();
-    return back();
-
-
+        return redirect()->route('database')->with('success', 'Person updated successfully.');
     }
+
 
     public function search(Request $request)
 {
     $searchQuery = $request->input('search');
 
-    $customers = Customer::where('name', 'LIKE', '%' . $searchQuery . '%')
+    $people =  Person::where('name', 'LIKE', '%' . $searchQuery . '%')
         ->orWhere('lname', 'LIKE', '%' . $searchQuery . '%')
         ->orWhere('email', 'LIKE', '%' . $searchQuery . '%')
-        ->get();
+        ->paginate(3);
 
         return view('database', [
-            'Customers' => $customers,
+            'People' => $people
         ]);
 }
 
