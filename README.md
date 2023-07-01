@@ -11,7 +11,7 @@ Before running this application, make sure you have the following prerequisites 
 
 - PHP (>= 7.4)
 - Composer
-- MySQL
+- SQLITE
 
 ## Installation
 
