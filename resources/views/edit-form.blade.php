@@ -1,6 +1,4 @@
 
-
-
 @if($People->isNotEmpty())
 <div id="edit-form" style="display: none;">
     <h2>Edit Person</h2>
