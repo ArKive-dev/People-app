@@ -1,9 +1,6 @@
 @extends('/components/layout')
 
-
 @section('content')
-
-
 
 @if($People->isNotEmpty())
 <table>

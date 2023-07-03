@@ -1,9 +1,6 @@
-Certainly! Here's the README file as a single code file:
-
-
 # My First Project 
 
-This is a simple web application that allows you to manage a list of people. It is built with Laravel, a popular PHP framework.
+This is a simple web application that allows you to manage a list of people.
 
 ## Prerequisites
 
@@ -16,44 +13,32 @@ Before running this application, make sure you have the following prerequisites 
 ## Installation
 
 1. Clone the repository to your local machine:
-git clone <repository-url>
+git clone https://github.com/ArKive-dev/People-app.git
 
 
 
 2. Navigate to the project directory:
-cd my-first-project
-
+cd People-app
 
 
 3. Install the project dependencies using Composer:
 composer install
 
 
-
-4. Create a new SQLITE database for the application.
-
-5. Copy the `.env.example` file to `.env`:
-cp .env.example .env
+4. Create a new SQLITE database for the application and name it "database.sqlite".
 
 
-6. Open the `.env` file and update the database configuration with your SQLITE credentials:
+5. Open the `.env` file and update the database configuration with your SQLITE credentials:
 
 DB_CONNECTION=sqlite
 
-
-
-
-7. Run the database migrations to create the necessary tables:
+6. Run the database migrations to create the necessary tables:
 php artisan migrate
 
-
-
-8. Start the development server:
+7. Start the development server:
 php artisan serve
 
-
-
-9. Open your web browser and visit `http://localhost:8000` to access the application.
+8. Open your web browser and visit `http://localhost:8000` to access the application.
 
 ## Usage
 
