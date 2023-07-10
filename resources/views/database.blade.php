@@ -1,6 +1,10 @@
 @extends('/components/layout')
 
+
+
 @section('content')
+
+@include('add-user')
 
 @if($People->isNotEmpty())
 <table>
@@ -52,4 +56,9 @@
 
 @endif
 
+
+@include('edit-form')
+
 @endsection
+
+
