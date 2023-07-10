@@ -28,9 +28,9 @@
         const editButton = button;
         const row = editButton.parentNode.parentNode;
         const id = row.querySelector('button.edit-button').getAttribute('data-id');
-        const name = row.querySelector('td:nth-child(1)').textContent.trim();
-        const lname = row.querySelector('td:nth-child(2)').textContent.trim();
-        const email = row.querySelector('td:nth-child(3)').textContent.trim();
+        const name = row.querySelector('td:nth-child(1)').textContent.trim();  // Vres to name kai kane remove to whitespace
+        const lname = row.querySelector('td:nth-child(2)').textContent.trim(); // Vres to lname kai kane remove to whitespace
+        const email = row.querySelector('td:nth-child(3)').textContent.trim(); // Vres to email kai kane remove to whitespace
 
         // Set the values in the edit form
         document.getElementById('edit-person-id').value = id;

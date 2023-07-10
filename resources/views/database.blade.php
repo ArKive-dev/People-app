@@ -31,6 +31,8 @@
 </thead>
 
 <tbody>
+
+
 @foreach ($People as $Person)
 <tr>
     <td>{{ $Person->name }}</td>
